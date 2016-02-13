@@ -13,8 +13,23 @@ export default Ember.Component.extend({
    */
   fileInputClass: '',
   
+  /**
+   * Classes to put on the activation button.
+   * @type {String}
+   */
   fileBtnClass: '',
-  fileBtnText: '',
+  
+  /**
+   * Text to put in the activation button.
+   * @type {String}
+   */
+  fileBtnText: 'Choose Files',
+  
+  /**
+   * Flag to hide/show the activation button.
+   * @type {Boolean}
+   */
+  hideActivationBtn: false,
   
   /**
    * Flag used to output imformational logs.
@@ -22,6 +37,10 @@ export default Ember.Component.extend({
    */
   debug: false,
   
+  /**
+   * Flag to disable/enable the file uploader.
+   * @type {Boolean}
+   */
   disabled: false,
   enabled: Ember.computed.not('disabled'),
   
@@ -50,7 +69,7 @@ export default Ember.Component.extend({
    * Set to null to disable drag & drop support
    * @type {String}
    */
-  dropZone: null,
+  dropZone: Ember.$(window),
   
   /**
    * The parameter name for the file form data (the request argument name).
@@ -295,6 +314,26 @@ export default Ember.Component.extend({
       return settings;
     }
   }),
+  
+  /**
+   * Tracks the `disabled` value.
+   */
+  disabledTracker: Ember.observer('disabled',
+    function() {
+      Ember.run.once(this, 'checkDisabled');
+    }
+  ),
+  
+  /**
+   * Initializes or destroys the cropper with the `disabled` options is changed.
+   */
+  checkDisabled() {
+    if(this.get('disabled') === true) {
+      this._setup();
+    } else {
+      this._teardown();
+    }
+  },
   
   
   /**

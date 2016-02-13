@@ -1,9 +1,10 @@
 <input type="file" name="files[]" id="{{elementId}}-input" class="ember-fileupload-input {{fileInputClass}}" multiple={{allowMultiple}} disabled={{disabled}}>
-<button type="button" class="{{fileBtnClass}}" {{action 'activateFileInput'}}>
-  {{#if fileBtnText}}
-    {{{fileBtnText}}}
-  {{else}}
-    Choose Files
-  {{/if}}
-</button>
-  
+{{#unless hideActivationBtn}}
+  <button type="button" class="{{fileBtnClass}}" {{action 'activateFileInput'}}>
+    {{#if fileBtnText}}
+      {{{fileBtnText}}}
+    {{else}}
+      Choose Files
+    {{/if}}
+  </button>
+{{/unless}}
