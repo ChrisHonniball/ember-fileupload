@@ -1,15 +1,13 @@
 module.exports = {
   description: '',
 
-  normalizeEntityName: function(entityName) {
+  normalizeEntityName(entityName) {
     return entityName;
   },
 
-  afterInstall: function() {
-    var that = this;
-    
-    return that.addBowerPackagesToProject([
-      { name: 'jquery-file-upload' },
+  afterInstall() {
+    return this.addBowerPackagesToProject([
+      { name: 'jquery-file-upload' }
     ]);
   }
 };
