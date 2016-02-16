@@ -90,7 +90,7 @@ export default Ember.Component.extend({
    * Note: Uploading multiple files with one request requires the multipart option to be set to true (the default).
    * @type {Boolean}
    */
-  singleFileUploads: false,
+  singleFileUploads: true,
   allowMultiple: Ember.computed.not('singleFileUploads'),
   
   /**
@@ -244,7 +244,6 @@ export default Ember.Component.extend({
     'progressInterval',
     'bitrateInterval',
     'autoUpload',
-    'formData',
   {
     get() {
       let settings = this.getProperties(
@@ -276,14 +275,6 @@ export default Ember.Component.extend({
       
       // Handle form data
       if(this.attrs.formData) {
-        /* */
-        Ember.Logger.log(
-          "%c%s#settings formData type: %s",
-          "color: purple", // http://www.w3schools.com/html/html_colornames.asp
-          this.toString(),
-          typeof this.attrs.formData
-        );
-        //*/
         settings.formData = this.attrs.formData;
       }
       
@@ -295,8 +286,16 @@ export default Ember.Component.extend({
       });
       
       // Look for the dropzone.
-      if(this.get('dropZone')) {
-        settings.dropZone = this.$(this.get('dropZone'));
+      if(this.get('dropZone') && typeof this.get('dropZone') === 'string') {
+        if(this.get('debug')) {
+          Ember.Logger.log(
+            "%c%s#settings dropZone setup as %O",
+            "color: purple", // http://www.w3schools.com/html/html_colornames.asp
+            this.toString(),
+            Ember.$(this.get('dropZone'))
+          );
+        }
+        settings.dropZone = Ember.$(this.get('dropZone'));
       }
       
       // Set some unchangeable settings
@@ -355,7 +354,7 @@ export default Ember.Component.extend({
   },
   
   
-  willInsertElement() {
+  didInsertElement() {
     this._setup();
   },
   
