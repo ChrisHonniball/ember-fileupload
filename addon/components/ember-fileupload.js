@@ -69,7 +69,7 @@ export default Ember.Component.extend({
    * Set to null to disable drag & drop support
    * @type {String}
    */
-  dropZone: Ember.$(window),
+  dropZone: 'self',
   
   /**
    * The parameter name for the file form data (the request argument name).
@@ -295,6 +295,11 @@ export default Ember.Component.extend({
             Ember.$(this.get('dropZone'))
           );
         }
+        
+        if(this.get('dropZone') === 'self') {
+          this.set('dropZone', `#${this.get('elementId')}`);
+        }
+        
         settings.dropZone = Ember.$(this.get('dropZone'));
       }
       
