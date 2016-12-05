@@ -1,17 +1,17 @@
 {
   "name": "ember-fileupload",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "1.0.0",
+  "description": "A simple implementation of jQuery file upload.",
   "keywords": [
     "ember-addon"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Chris Honniball",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/ChrisHonniball/ember-fileupload",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
