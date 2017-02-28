@@ -376,7 +376,7 @@ export default Ember.Component.extend({
    * Perform any necessary initializations.
    */
   init() {
-    this.super(...arguments);
+    this._super(...arguments);
 
     // Inject a copy of this component into the parent.
     this.set('parentController.fileuploadComponent', this);
