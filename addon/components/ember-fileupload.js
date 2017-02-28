@@ -353,7 +353,7 @@ export default Ember.Component.extend({
 
     // Inject a copy of this component into the parent.
     this.set('parentController.fileuploadComponent', this);
-  }
+  },
 
   /**
    * Initializes the jQuery File Upload plugin on the input element.
