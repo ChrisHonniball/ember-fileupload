@@ -346,16 +346,6 @@ export default Ember.Component.extend({
   },
 
   /**
-   * Perform any necessary initializations.
-   */
-  init() {
-    this.super(...arguments);
-
-    // Inject a copy of this component into the parent.
-    this.set('parentController.fileuploadComponent', this);
-  },
-
-  /**
    * Initializes the jQuery File Upload plugin on the input element.
    */
   _setup() {
@@ -382,9 +372,14 @@ export default Ember.Component.extend({
     this._teardown();
   },
 
+  /**
+   * Perform any necessary initializations.
+   */
   init() {
-    this._super(...arguments);
-    this.set('fileUploadComponent', this);
+    this.super(...arguments);
+
+    // Inject a copy of this component into the parent.
+    this.set('parentController.fileuploadComponent', this);
   },
 
 
