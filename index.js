@@ -3,7 +3,7 @@
 
 module.exports = {
   name: 'ember-fileupload',
-  
+
   included: function(app) {
     this._super.included(app);
 
@@ -12,7 +12,7 @@ module.exports = {
     app.import(app.bowerDirectory + '/jquery-file-upload/js/jquery.iframe-transport.js');
     app.import(app.bowerDirectory + '/jquery-file-upload/js/jquery.fileupload.js');
   },
-  
+
   isDevelopingAddon: function() {
     return true;
   }

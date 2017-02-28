@@ -8,6 +8,12 @@ export default Ember.Component.extend({
   classNameBindings: ['disabled'],
 
   /**
+   * Placeholder for a parent controller to be sent to the addon.
+   * @type {Ember Object}
+   */
+  parentController: {},
+
+  /**
    * Classes to put on the file input.
    * @type {String}
    */
@@ -339,6 +345,15 @@ export default Ember.Component.extend({
     }
   },
 
+  /**
+   * Perform any necessary initializations.
+   */
+  init() {
+    this.super(...arguments);
+
+    // Inject a copy of this component into the parent.
+    this.set('parentController.fileuploadComponent', this);
+  }
 
   /**
    * Initializes the jQuery File Upload plugin on the input element.
